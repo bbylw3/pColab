@@ -162,21 +162,8 @@ Shadowsocks需要Nekobox、Nekoray使用；V2RayN也可以使用，使用时需�
 async function handleSubscription(type) {
     const baseUrl = 'https://colad.xyhk.us.kg';
     
-    // 添加协议映射
-    let endpoint;
-    switch (type.toLowerCase()) {
-        case 'shadowsocks':
-            endpoint = 'ss';
-            break;
-        case 'singbox':
-            endpoint = 'sb';
-            break;
-        case 'clash':
-            endpoint = 'clash';
-            break;
-        default:
-            return new Response('不支持的协议类型', { status: 400 });
-    }
+    // 修改协议映射，直接使用小写的原始协议名
+    const protocol = type.toLowerCase();
     
     const headers = {
         'Content-Type': 'text/plain;charset=UTF-8',
@@ -185,7 +172,8 @@ async function handleSubscription(type) {
     };
 
     try {
-        const response = await fetch(`${baseUrl}/api/${endpoint}`);
+        // 直接使用原始协议名
+        const response = await fetch(`${baseUrl}/api/${protocol}`);
         if (!response.ok) {
             throw new Error('Subscription fetch failed');
         }
