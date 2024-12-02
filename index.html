@@ -116,23 +116,23 @@ Shadowsocks需要Nekobox、Nekoray使用；V2RayN也可以使用，使用时需�
       ></textarea>
     </div>
     <script>
-      async function copyAndRedirect(route) {
+      async function copyAndRedirect(protocol) {
         const button = event.target;
         const originalText = button.textContent;
         button.disabled = true;
         button.style.opacity = "0.7";
+        button.textContent = "复制中...";
 
         try {
-          const link = window.location.origin + "/api/" + route.toLowerCase();
-          await navigator.clipboard.writeText(link);
+          const url = `${window.location.origin}/api/${protocol.toLowerCase()}`;
+          await navigator.clipboard.writeText(url);
 
           const message = document.getElementById("message");
           message.style.display = "block";
-          message.textContent = "复制成功！即将跳转...";
+          message.style.color = "#ff9000";
+          message.textContent = "订阅链接已复制到剪贴板";
 
-          setTimeout(() => {
-            window.location.href = link;
-          }, 2000);
+          window.location.href = url;
         } catch (error) {
           console.error("复制失败:", error);
           const message = document.getElementById("message");
