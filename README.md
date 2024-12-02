@@ -22,7 +22,7 @@
 2. 进入 Workers & Pages
 3. 创建新的 Worker
 4. 复制 `worker.js` 的内容到编辑器中
-5. 修改 `baseUrl` 为你的订阅源地址
+5. 修改 `baseUrl` 为你的订阅源地址（例如：`https://your-subscription-source.com`）
 6. 点击 "保存并部署"
 
 ### 方式二：Cloudflare Pages 部署
@@ -36,7 +36,8 @@
 7. 部署配置：
    - 构建命令：留空
    - 构建输出目录：留空
-   - 环境变量：无需设置
+   - 环境变量：
+     - 添加 `BASE_URL`，值为你的订阅源地址（例如：`https://your-subscription-source.com`）
 8. 点击 "保存并部署"
 
 部署完成后，Cloudflare 会提供一个 `*.workers.dev` 或 `*.pages.dev` 的域名。
@@ -72,13 +73,16 @@
 - ✅ 支持动态请求处理
 - ✅ 可以自定义订阅源
 - ✅ 适合需要代理或处理请求的场景
+- ✅ 配置简单，直接修改代码中的 baseUrl
 - ❌ 有每日请求限制（免费版）
 
 ### Pages 部署
 - ✅ 完全免费，无使用限制
 - ✅ 自动构建和部署
 - ✅ 支持自定义域名
-- ❌ 仅支持静态内容
+- ✅ 支持通过环境变量配置订阅源
+- ✅ 支持 Functions 动态请求处理
+- ❌ 配置相对复杂
 
 ## 技术栈
 
