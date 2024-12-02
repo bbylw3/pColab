@@ -185,7 +185,7 @@ async function handleSubscription(type) {
     };
 
     try {
-        const response = await fetch(`${baseUrl}/${endpoint}`);
+        const response = await fetch(`${baseUrl}/api/${endpoint}`);
         if (!response.ok) {
             throw new Error('Subscription fetch failed');
         }
